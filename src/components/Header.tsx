@@ -30,7 +30,7 @@ const Header: React.FC = () => {
       <div className="header-container">
         <div className="logo-container">
           <img 
-            src={isDarkMode ? "/logodark.jpeg" : "/logowhite.png"} 
+            src={isDarkMode ? "/logodark.jpeg" : "/logowhite.jpeg"} 
             alt="ANSTARTUP Brasil" 
             className="logo"
           />
