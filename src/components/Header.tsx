@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         <div className="logo-container">
           <img 
             src={isDarkMode ? "/logodark.jpeg" : "/logowhite.jpeg"} 
-            alt="ANSTARTUP Brasil" 
+            alt="ANSTARTUP Brasil - Transformando o Ecossistema de Startups" 
             className="logo"
           />
         </div>

@@ -6,16 +6,16 @@
   z-index: 1000;
   background: var(--header-bg);
   border-bottom: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0.75rem 2rem;
   height: 60px;
@@ -25,26 +25,43 @@
 .logo-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   margin-left: -50px;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  width: 200px;
+  height: 55px;
 }
 
-.logo {
-  height: 40px;
-  width: auto;
-  transition: opacity 0.3s ease;
-}
-
-.logo:hover {
-  opacity: 0.8;
+.logo-container:hover {
+  background: var(--accent-light);
+  transform: scale(1.02);
 }
 
 .navigation {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  flex: 1;
-  justify-content: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+  max-width: 180px;
+  max-height: 45px;
+  object-fit: contain;
+  object-position: center;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
 }
 
 .nav-link {
@@ -52,15 +69,36 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent-color);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .nav-link:hover {
-  color: var(--accent-color);
-  background-color: var(--nav-hover-bg);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nav-link:focus {
@@ -71,22 +109,24 @@
 .theme-toggle {
   background: var(--toggle-bg);
   border: 2px solid var(--toggle-border);
-  border-radius: 25px;
+  border-radius: 30px;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  width: 50px;
-  height: 26px;
+  width: 58px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .theme-toggle:hover {
   transform: scale(1.05);
-  box-shadow: 0 2px 8px var(--shadow-color);
+  box-shadow: 0 6px 20px var(--shadow-color);
+  border-color: var(--accent-color);
 }
 
 .theme-toggle:focus {
@@ -100,23 +140,31 @@
   position: relative;
   border-radius: inherit;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover .toggle-track {
+  opacity: 0.2;
 }
 
 .toggle-thumb {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: var(--thumb-position, 2px);
-  width: 20px;
-  height: 20px;
+  left: var(--thumb-position, 3px);
+  width: 22px;
+  height: 22px;
   background: var(--thumb-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--accent-color);
 }
 
 /* Variáveis CSS para temas */
@@ -127,23 +175,27 @@
   --toggle-border: #e2e8f0;
   --thumb-bg: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --accent-color: #3b82f6;
-  --thumb-position: 2px;
+  --accent-color: #6366f1;
+  --accent-secondary: #8b5cf6;
+  --accent-light: rgba(99, 102, 241, 0.1);
+  --thumb-position: 3px;
   --text-color: #1a202c;
-  --nav-hover-bg: rgba(59, 130, 246, 0.1);
+  --nav-hover-bg: rgba(99, 102, 241, 0.1);
 }
 
 :root[data-theme="dark"] {
-  --header-bg: rgba(0, 0, 0, 0.95);
-  --border-color: rgba(0, 0, 0, 0.1);
-  --toggle-bg: #000000;
-  --toggle-border: #000000;
-  --thumb-bg: #000000;
+  --header-bg: #000000;
+  --border-color: rgba(51, 65, 85, 0.3);
+  --toggle-bg: #1e293b;
+  --toggle-border: #334155;
+  --thumb-bg: #334155;
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --accent-color: #60a5fa;
-  --thumb-position: 26px;
-  --text-color: #f7fafc;
-  --nav-hover-bg: rgba(0, 0, 0, 0.1);
+  --accent-color: #818cf8;
+  --accent-secondary: #a78bfa;
+  --accent-light: rgba(129, 140, 248, 0.15);
+  --thumb-position: 31px;
+  --text-color: #f1f5f9;
+  --nav-hover-bg: rgba(129, 140, 248, 0.1);
 }
 
 /* Animações suaves */
@@ -175,10 +227,13 @@
   
   .logo-container {
     margin-left: -60px;
+    width: 220px;
+    height: 60px;
   }
   
   .logo {
-    height: 45px;
+    height: 50px;
+    max-height: 50px;
   }
   
   .navigation {
@@ -213,7 +268,8 @@
   }
   
   .logo {
-    height: 38px;
+    height: 42px;
+    max-width: 170px;
   }
   
   .navigation {
@@ -226,8 +282,8 @@
   }
   
   .theme-toggle {
-    width: 48px;
-    height: 25px;
+    width: 55px;
+    height: 28px;
   }
 }
 
@@ -243,7 +299,8 @@
   }
   
   .logo {
-    height: 35px;
+    height: 40px;
+    max-width: 160px;
   }
   
   .navigation {
@@ -256,18 +313,18 @@
   }
   
   .theme-toggle {
-    width: 45px;
-    height: 24px;
+    width: 52px;
+    height: 27px;
   }
   
   .toggle-thumb {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     font-size: 10px;
   }
   
   :root[data-theme="dark"] {
-    --thumb-position: 23px;
+    --thumb-position: 28px;
   }
 }
 
@@ -284,7 +341,8 @@
   }
   
   .logo {
-    height: 32px;
+    height: 38px;
+    max-width: 140px;
   }
   
   .navigation {
@@ -299,18 +357,18 @@
   }
   
   .theme-toggle {
-    width: 42px;
-    height: 22px;
+    width: 50px;
+    height: 26px;
   }
   
   .toggle-thumb {
-    width: 16px;
-    height: 16px;
+    width: 19px;
+    height: 19px;
     font-size: 9px;
   }
   
   :root[data-theme="dark"] {
-    --thumb-position: 22px;
+    --thumb-position: 27px;
   }
 }
 
@@ -326,7 +384,8 @@
   }
   
   .logo {
-    height: 28px;
+    height: 35px;
+    max-width: 120px;
   }
   
   .nav-link {
@@ -335,18 +394,18 @@
   }
   
   .theme-toggle {
-    width: 40px;
-    height: 20px;
+    width: 48px;
+    height: 24px;
   }
   
   .toggle-thumb {
-    width: 14px;
-    height: 14px;
+    width: 17px;
+    height: 17px;
     font-size: 8px;
   }
   
   :root[data-theme="dark"] {
-    --thumb-position: 20px;
+    --thumb-position: 26px;
   }
 }
 
