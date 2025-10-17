@@ -37,8 +37,12 @@ const Header: React.FC = () => {
         </div>
         
         <nav className="navigation">
-          <a href="#sobre" className="nav-link">Sobre nós</a>
-          <a href="#objetivos" className="nav-link">Objetivos</a>
+          <a href="#quem-somos" className="nav-link">Quem Somos</a>
+          <a href="#missao-valores" className="nav-link">Missão & Valores</a>
+          <a href="#principios" className="nav-link">Princípios</a>
+          <a href="#o-que-fazemos" className="nav-link">O Que Fazemos</a>
+          <a href="#visao" className="nav-link">Visão</a>
+          <a href="#equipe" className="nav-link">Equipe</a>
         </nav>
         
         <button 
