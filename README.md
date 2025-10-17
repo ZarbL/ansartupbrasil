@@ -114,6 +114,69 @@ O arquivo `vercel.json` já está configurado com:
 - Framework: Vite
 - Rewrites configurados para SPA
 
+### 🌐 Configurar Domínio Personalizado (anstartupbrasil.org)
+
+#### Passo 1: Adicionar domínio na Vercel
+
+1. Acesse seu projeto na [Vercel Dashboard](https://vercel.com/dashboard)
+2. Clique no projeto `anstartup`
+3. Vá em **Settings** > **Domains**
+4. Digite `anstartupbrasil.org` e clique em **Add**
+5. A Vercel fornecerá os registros DNS necessários
+
+#### Passo 2: Configurar DNS na Hostinger
+
+1. Acesse o [painel da Hostinger](https://hpanel.hostinger.com)
+2. Vá em **Domínios** > Selecione `anstartupbrasil.org`
+3. Clique em **DNS / Name Servers** ou **Gerenciar DNS**
+4. Adicione os seguintes registros:
+
+**Opção A - Registros A (Recomendado):**
+```
+Tipo: A
+Nome: @
+Valor: 76.76.19.19
+TTL: 3600
+
+Tipo: A
+Nome: @
+Valor: 76.76.19.61
+TTL: 3600
+```
+
+**Para o subdomínio www:**
+```
+Tipo: CNAME
+Nome: www
+Valor: cname.vercel-dns.com
+TTL: 3600
+```
+
+**Opção B - Usar CNAME (Alternativa):**
+```
+Tipo: CNAME
+Nome: @
+Valor: cname.vercel-dns.com
+TTL: 3600
+
+Tipo: CNAME
+Nome: www
+Valor: cname.vercel-dns.com
+TTL: 3600
+```
+
+> ⚠️ **Nota**: Alguns provedores não permitem CNAME no registro raiz (@). Neste caso, use os registros A.
+
+#### Passo 3: Aguardar Propagação
+
+- A propagação DNS pode levar de alguns minutos até 48 horas
+- Você pode verificar o status na Vercel Dashboard
+- Use [dnschecker.org](https://dnschecker.org) para verificar a propagação global
+
+#### Passo 4: SSL/HTTPS Automático
+
+A Vercel configura automaticamente o certificado SSL/HTTPS após a verificação do domínio.
+
 ## 📱 Responsividade
 
 O site foi desenvolvido com mobile-first e possui breakpoints para:
