@@ -13,12 +13,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@types/react": "^19.2.1",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "axios": "^1.12.2",
+    "jwt-decode": "^4.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.65.0",
+    "react-input-mask": "^2.0.4",
+    "react-router-dom": "^7.9.4",
     "typescript": "^5.9.3",
-    "vite": "^7.1.9"
+    "vite": "^7.1.9",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/react-input-mask": "^3.0.6"
   }
 }

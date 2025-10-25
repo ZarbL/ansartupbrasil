@@ -1,7 +1,30 @@
+import { useState } from 'react';
 import Header from './components/Header';
+import LoginModal from './components/LoginModal'; 
+import { useAuth } from './contexts/AuthContext';
 import './App.css';
 
 function App() {
+  const { isAuthenticated, usuario } = useAuth();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isCadastroModalOpen, setIsCadastroModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+
+  const handleOpenCadastro = () => {
+    setIsLoginModalOpen(false);
+    setIsCadastroModalOpen(true);
+  };
+
+  const handleOpenLogin = () => {
+    setIsCadastroModalOpen(false);
+    setIsLoginModalOpen(true);
+  };
+
+  const handleOpenForgotPassword = () => {
+    setIsLoginModalOpen(false);
+    setIsForgotPasswordModalOpen(true);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -224,13 +247,63 @@ function App() {
                 potencial em progresso.
               </p>
               <div className="cta-buttons">
-                <button className="cta-button primary">Associe-se Agora</button>
-                <button className="cta-button secondary">Saiba Mais</button>
+                <button 
+                  className="cta-button primary" 
+                  onClick={() => setIsCadastroModalOpen(true)}
+                >
+                  Associe-se Agora
+                </button>
+                <button 
+                  className="cta-button secondary"
+                  onClick={() => setIsLoginModalOpen(true)}
+                >
+                  {isAuthenticated && usuario ? 'Minha Conta' : 'Fazer Login'}
+                </button>
               </div>
             </div>
           </section>
         </div>
       </main>
+
+      {/* Modais */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToCadastro={handleOpenCadastro}
+        onForgotPassword={handleOpenForgotPassword}
+      />
+
+      {/* TODO: Implementar CadastroModal */}
+      {isCadastroModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsCadastroModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setIsCadastroModalOpen(false)}>✕</button>
+            <div className="modal-header">
+              <h2>Cadastro</h2>
+              <p>Em desenvolvimento... 🚧</p>
+              <button 
+                style={{ marginTop: '20px', padding: '10px 20px', cursor: 'pointer' }}
+                onClick={handleOpenLogin}
+              >
+                Já tem conta? Fazer Login
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TODO: Implementar ForgotPasswordModal */}
+      {isForgotPasswordModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsForgotPasswordModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setIsForgotPasswordModalOpen(false)}>✕</button>
+            <div className="modal-header">
+              <h2>Recuperar Senha</h2>
+              <p>Em desenvolvimento... 🚧</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
