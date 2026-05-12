@@ -1,0 +1,28 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-field__required {
+  color: #e53e3e;
+}
+
+.form-field__error {
+  font-size: 0.8rem;
+  color: #e53e3e;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-field__hint {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #666);
+}

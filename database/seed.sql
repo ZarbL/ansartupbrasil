@@ -173,6 +173,64 @@ INSERT INTO startups (
 -- Nota: As senhas abaixo são "SenhaSegura123!" hasheadas com bcrypt (10 rounds)
 -- Hash gerado: $2b$10$YourBcryptHashHere (este é um exemplo, precisa gerar real)
 
+-- ==============================================
+-- USUÁRIO DE TESTE PRINCIPAL - USE ESTE PARA LOGIN!
+-- ==============================================
+-- Email: teste@anstartup.com.br
+-- Senha: Teste@2025
+-- Startup: Startup Demo (Plano Premium - Todos os benefícios)
+-- ==============================================
+
+-- Startup para teste
+INSERT INTO startups (
+  id, razao_social, nome_fantasia, cnpj, email_corporativo, telefone,
+  site_url, cep, endereco, numero, bairro, cidade, estado,
+  area_atuacao, descricao_negocio, data_fundacao, numero_funcionarios,
+  estagio_startup, faturamento_anual, status_associacao, tipo_plano
+) VALUES (
+  '550e8400-e29b-41d4-a716-446655440999',
+  'Startup Demo Tecnologia LTDA',
+  'Startup Demo',
+  '99.999.999/0001-99',
+  'contato@startupdemo.com.br',
+  '(11) 99999-9999',
+  'https://startupdemo.com.br',
+  '01310-100',
+  'Avenida Paulista',
+  '1000',
+  'Bela Vista',
+  'São Paulo',
+  'SP',
+  'SaaS',
+  'Plataforma de demonstração para testes do sistema ANSTARTUP Brasil.',
+  '2025-01-01',
+  10,
+  'MVP',
+  '100K-500K',
+  'ativa',
+  'premium'
+);
+
+-- Usuário de teste
+INSERT INTO usuarios (
+  id, startup_id, nome_completo, cpf, email, telefone_celular,
+  cargo, tipo_usuario, senha_hash, salt,
+  email_verificado, ativo
+) VALUES (
+  '660e8400-e29b-41d4-a716-446655440999',
+  '550e8400-e29b-41d4-a716-446655440999',
+  'Usuário Teste',
+  '999.999.999-99',
+  'teste@anstartup.com.br',
+  '(11) 99999-9999',
+  'Administrador de Testes',
+  'admin',
+  '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', -- Senha: Teste@2025
+  'testsalt999',
+  TRUE,
+  TRUE
+);
+
 -- Usuário 1: Admin da TechPay
 INSERT INTO usuarios (
   id, startup_id, nome_completo, cpf, email, telefone_celular,

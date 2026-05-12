@@ -1,0 +1,51 @@
+.esqueci-senha-modal {
+  /* herda modal-content do LoginModal.css */
+}
+
+.esqueci-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px 48px;
+  gap: 12px;
+}
+
+.esqueci-success__icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.esqueci-success h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin: 0;
+}
+
+.esqueci-success h2::before { display: none; }
+
+.esqueci-success p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 340px;
+}
+
+.esqueci-success p strong {
+  color: var(--text-color);
+  word-break: break-all;
+}
+
+.esqueci-success__hint {
+  font-size: 0.8125rem !important;
+  color: var(--text-muted) !important;
+}
+
+.esqueci-success .submit-button {
+  margin-top: 12px;
+  width: 100%;
+  max-width: 300px;
+}
