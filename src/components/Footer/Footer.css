@@ -1,0 +1,138 @@
+/* ============================================
+   Footer — dark, 3 colunas
+   ============================================ */
+.footer {
+  background: #0D0D0D;
+  position: relative;
+}
+
+.footer__accent {
+  height: 2px;
+  background: #1A6B3A;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* ============================================
+   Brand column
+   ============================================ */
+.footer__logo {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #F9F7F4;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.footer__tagline {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(249, 247, 244, 0.4);
+  line-height: 1.5;
+  margin: 0 0 1.75rem;
+  max-width: 240px;
+}
+
+.footer__social {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer__social-link {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(249, 247, 244, 0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__social-link:hover {
+  color: #F9F7F4;
+}
+
+/* ============================================
+   Nav columns
+   ============================================ */
+.footer__col-title {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(249, 247, 244, 0.3);
+  margin-bottom: 1.25rem;
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer__link {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: rgba(249, 247, 244, 0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+  width: fit-content;
+}
+
+.footer__link:hover {
+  color: #F9F7F4;
+}
+
+/* ============================================
+   Bottom bar
+   ============================================ */
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.25rem 0;
+}
+
+.footer__copy {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(249, 247, 244, 0.25);
+  margin: 0;
+}
+
+/* ============================================
+   Tablet (≥ 640px)
+   ============================================ */
+@media (min-width: 640px) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ============================================
+   Desktop (≥ 1024px)
+   ============================================ */
+@media (min-width: 1024px) {
+  .footer__inner {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: auto;
+  }
+}

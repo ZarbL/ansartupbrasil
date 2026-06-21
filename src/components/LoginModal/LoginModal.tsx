@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -52,6 +53,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   onForgotPassword,
 }) => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -69,6 +71,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       await login(data.email, data.senha);
       reset();
       onClose();
+      navigate('/dashboard');
     } catch (error: unknown) {
       setErrorMessage(resolveErrorMessage(error));
     } finally {

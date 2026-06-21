@@ -1,0 +1,116 @@
+.qs-page {
+  min-height: 100vh;
+  background: #F9F7F4;
+  padding: 8rem 1.5rem 5rem;
+}
+
+.qs-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.qs-back {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6B6B6B;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 3rem;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.qs-back:hover { color: #0D0D0D; }
+
+.qs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1A6B3A;
+  margin-bottom: 1.25rem;
+}
+
+.qs-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0D0D0D;
+  margin-bottom: 2rem;
+}
+
+.qs-desc {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: #6B6B6B;
+  line-height: 1.85;
+  margin-bottom: 3rem;
+  border-left: 2px solid #1A6B3A;
+  padding-left: 1.5rem;
+}
+
+.qs-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #E0DDD8;
+}
+
+.qs-stat__num {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: #0D0D0D;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.qs-stat__label {
+  display: block;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6B6B6B;
+}
+
+.qs-wip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qs-wip__badge {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1A6B3A;
+  border: 1px solid #1A6B3A;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0;
+}
+
+.qs-wip__text {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #6B6B6B;
+  margin: 0;
+}

@@ -1,0 +1,89 @@
+/* ============================================
+   Work In Progress Page
+   ============================================ */
+.wip-page {
+  min-height: 100vh;
+  background: #0D0D0D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.wip-content {
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.wip-tag {
+  display: inline-block;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1A6B3A;
+  margin-bottom: 1.5rem;
+}
+
+.wip-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(5rem, 16vw, 9rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #F9F7F4;
+  margin-bottom: 2rem;
+}
+
+.wip-desc {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(249, 247, 244, 0.5);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+  max-width: 400px;
+}
+
+.wip-btn {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: rgba(249, 247, 244, 0.7);
+  border: 1px solid rgba(249, 247, 244, 0.2);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.25s ease;
+}
+
+.wip-btn:hover {
+  background: #1A6B3A;
+  color: #F9F7F4;
+  border-color: #1A6B3A;
+}
+
+/* ============================================
+   Decorative background text
+   ============================================ */
+.wip-decoration {
+  position: absolute;
+  bottom: -2rem;
+  right: -1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(6rem, 20vw, 16rem);
+  font-weight: 700;
+  color: rgba(249, 247, 244, 0.03);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}

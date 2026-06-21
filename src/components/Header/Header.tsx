@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import LoginButton from '../LoginButton/LoginButton';
 import './Header.css';
-
-const PLANO_LABELS: Record<string, string> = {
-  basico: '🌱 Básico',
-  profissional: '💼 Profissional',
-  premium: '⭐ Premium',
-  enterprise: '🏆 Enterprise',
-};
 
 interface HeaderProps {
   onOpenLogin?: () => void;
@@ -15,24 +9,23 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onOpenLogin, onOpenCadastro }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const { isAuthenticated, usuario, startup, logout } = useAuth();
+  const { isAuthenticated, usuario, logout } = useAuth();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setIsDarkMode(theme === 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode ? 'dark' : 'light';
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
+  // Fecha menu ao redimensionar para desktop
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 768) setIsMenuOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const handleLogout = async () => {
     setShowLogoutConfirm(false);
@@ -41,18 +34,47 @@ const Header: React.FC<HeaderProps> = ({ onOpenLogin, onOpenCadastro }) => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  const handleMobileLogin = () => { closeMenu(); onOpenLogin?.(); };
+  const handleMobileCadastro = () => { closeMenu(); onOpenCadastro?.(); };
+
   return (
-    <header className="header">
+    <header className={`header${isScrolled ? ' header--scrolled' : ''}`}>
       <div className="header-container">
-        <div className="logo-container">
-          <img
-            src={isDarkMode ? '/logodark.jpeg' : '/logowhite.jpeg'}
-            alt="ANSTARTUP Brasil"
-            className="logo"
-          />
+
+        <a href="/" className="header-logo" aria-label="FSartup — Página inicial">
+          FSartup
+        </a>
+
+        {/* Nav links — desktop only */}
+        <nav className="navigation" aria-label="Menu principal">
+          {[
+            ['/quem-somos',     'Quem Somos'],
+            ['/#o-que-fazemos', 'O Que Fazemos'],
+            ['/#principios',    'Princípios'],
+            ['/#equipe',        'Equipe'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className="nav-link">
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Auth buttons — desktop only */}
+        <div className="auth-buttons">
+          {isAuthenticated && usuario ? (
+            <>
+              <span className="user-name">{usuario.nome_completo.split(' ')[0]}</span>
+              <button className="btn-logout" onClick={() => setShowLogoutConfirm(true)}>Sair</button>
+            </>
+          ) : (
+            <>
+              <LoginButton onClick={onOpenLogin} />
+              <button className="btn-cadastro" onClick={onOpenCadastro}>Associar-se</button>
+            </>
+          )}
         </div>
 
-        {/* Botão hamburguer — mobile */}
+        {/* Hamburger — mobile only */}
         <button
           className={`hamburger${isMenuOpen ? ' hamburger--open' : ''}`}
           onClick={() => setIsMenuOpen((v) => !v)}
@@ -63,57 +85,43 @@ const Header: React.FC<HeaderProps> = ({ onOpenLogin, onOpenCadastro }) => {
           <span />
           <span />
         </button>
-
-        <nav className={`navigation${isMenuOpen ? ' navigation--open' : ''}`} aria-label="Menu principal">
-          {[
-            ['#quem-somos', 'Quem Somos'],
-            ['#missao-valores', 'Missão & Valores'],
-            ['#principios', 'Princípios'],
-            ['#o-que-fazemos', 'O Que Fazemos'],
-            ['#visao', 'Visão'],
-            ['#equipe', 'Equipe'],
-          ].map(([href, label]) => (
-            <a key={href} href={href} className="nav-link" onClick={closeMenu}>
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="auth-buttons">
-          {isAuthenticated && usuario ? (
-            <>
-              <div className="user-info">
-                <span className="user-name">👤 {usuario.nome_completo}</span>
-                {startup && (
-                  <span className="startup-info">
-                    {startup.nome_fantasia} · {PLANO_LABELS[startup.tipo_plano]}
-                  </span>
-                )}
-              </div>
-              <button className="btn-logout" onClick={() => setShowLogoutConfirm(true)}>
-                Sair
-              </button>
-            </>
-          ) : (
-            <>
-              <button className="btn-login" onClick={onOpenLogin}>Login</button>
-              <button className="btn-cadastro" onClick={onOpenCadastro}>Cadastrar</button>
-            </>
-          )}
-        </div>
-
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={`Alternar para modo ${isDarkMode ? 'claro' : 'escuro'}`}
-        >
-          <div className="toggle-track">
-            <div className="toggle-thumb">{isDarkMode ? '🌙' : '☀️'}</div>
-          </div>
-        </button>
       </div>
 
-      {/* Overlay de confirmação de logout — sem window.confirm */}
+      {/* Mobile menu dropdown */}
+      {isMenuOpen && (
+        <div className="mobile-menu" role="dialog" aria-label="Menu de navegação">
+          <nav className="mobile-nav" aria-label="Menu principal mobile">
+            {[
+              ['/quem-somos',     'Quem Somos'],
+              ['/#o-que-fazemos', 'O Que Fazemos'],
+              ['/#principios',    'Princípios'],
+              ['/#equipe',        'Equipe'],
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="mobile-nav__link" onClick={closeMenu}>
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="mobile-auth">
+            {isAuthenticated && usuario ? (
+              <button className="mobile-auth__logout" onClick={() => { closeMenu(); setShowLogoutConfirm(true); }}>
+                Sair
+              </button>
+            ) : (
+              <>
+                <button className="mobile-auth__login" onClick={handleMobileLogin}>
+                  Entrar
+                </button>
+                <button className="mobile-auth__cadastro" onClick={handleMobileCadastro}>
+                  Associar-se
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
       {showLogoutConfirm && (
         <div className="logout-confirm-overlay" role="dialog" aria-modal="true" aria-label="Confirmar saída">
           <div className="logout-confirm">

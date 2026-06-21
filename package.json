@@ -18,6 +18,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@types/react": "^19.2.1",
     "@types/react-dom": "^19.2.0",
+    "@types/styled-components": "^5.1.36",
     "@vitejs/plugin-react": "^5.0.4",
     "axios": "^1.12.2",
     "jwt-decode": "^4.0.0",
@@ -26,6 +27,7 @@
     "react-hook-form": "^7.65.0",
     "react-imask": "^7.6.1",
     "react-router-dom": "^7.9.4",
+    "styled-components": "^6.4.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.9",
     "zod": "^4.1.12"
