@@ -390,7 +390,7 @@ const HomePage: React.FC<HomePageProps> = ({ onOpenCadastro, onOpenLogin }) => {
           </div>
           <div className="hp-cta__right">
             <p className="hp-cta__desc">
-              A FSartup convida você a construir um futuro onde a inovação tecnológica
+              A FNStartup convida você a construir um futuro onde a inovação tecnológica
               seja a força motriz de um Brasil mais próspero e inclusivo.
             </p>
             <div className="hp-cta__actions">

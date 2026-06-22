@@ -41,8 +41,8 @@ const Header: React.FC<HeaderProps> = ({ onOpenLogin, onOpenCadastro }) => {
     <header className={`header${isScrolled ? ' header--scrolled' : ''}`}>
       <div className="header-container">
 
-        <a href="/" className="header-logo" aria-label="FSartup — Página inicial">
-          FSartup
+        <a href="/" className="header-logo" aria-label="FNStartup — Página inicial">
+          FNStartup
         </a>
 
         {/* Nav links — desktop only */}

@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
       <div className="container footer__inner">
 
         <div className="footer__brand">
-          <span className="footer__logo">FSartup</span>
+          <span className="footer__logo">FNStartup</span>
           <p className="footer__tagline">Federação Nacional de Startups do Brasil</p>
           <div className="footer__social">
             <a
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
       <div className="footer__bottom">
         <div className="container">
           <p className="footer__copy">
-            © {year} FSartup — Federação Nacional de Startups. Todos os direitos reservados.
+            © {year} FNStartup — Federação Nacional de Startups. Todos os direitos reservados.
           </p>
         </div>
       </div>

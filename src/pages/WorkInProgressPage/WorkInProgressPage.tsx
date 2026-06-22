@@ -25,7 +25,7 @@ const WorkInProgressPage: React.FC = () => {
         </button>
       </div>
       <div className="wip-decoration" aria-hidden="true">
-        <span>FSartup</span>
+        <span>FNStartup</span>
       </div>
     </div>
   );

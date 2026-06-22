@@ -16,7 +16,7 @@ const QuemSomosPage: React.FC = () => {
           A federação que representa o ecossistema de inovação do Brasil.
         </h1>
         <p className="qs-desc">
-          A FSartup reúne startups, empreendedores digitais, líderes e agentes de inovação
+          A FNStartup reúne startups, empreendedores digitais, líderes e agentes de inovação
           de todo o país com o objetivo de promover um ecossistema vibrante, inclusivo e
           competitivo — impulsionando o Brasil como referência global em tecnologia,
           inovação e desenvolvimento sustentável.
